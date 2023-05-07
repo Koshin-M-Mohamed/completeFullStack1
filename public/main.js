@@ -10,17 +10,21 @@ function getAnime() {
       if (data.data.length === 0) {
         alert("SORRY we couldnt find that anime");
       } else {
-        document.querySelector(".searchResult").innerHTML = `
-        <div>
-               <h5 >${data.data[0].title}</h5>
-               <img 
-                 src="${data.data[0].images.jpg.image_url}"
-                 alt=""
-               />
-               <br>
-               <button id="bookmark"/>Bookmark</button>
-             </div>
-               `;
+        document.querySelector(".searchResult").innerHTML = `         
+<div class="col">
+              <div class="card">
+                <img src="${data.data[0].images.jpg.image_url}" class="img-fluid" alt="Image description">
+                <div class="card-body1">
+
+
+                  <h5 class="card-title">${data.data[0].title}</h5>
+      
+                  <button id="bookmark" class="btn btn-secondary"/>Bookmark</button>
+                  </div>
+                </div>
+              </div>
+
+              `;
       }
       img = data.data[0].images.jpg.image_url;
       title = data.data[0].title;
@@ -29,9 +33,6 @@ function getAnime() {
 }
 
 function bookmark() {
-  console.log(title);
-  console.log(img);
-
   fetch("addAnime", {
     method: "post",
     headers: {
@@ -41,25 +42,44 @@ function bookmark() {
       name: title,
       img: img,
     }),
-  }).then(window.location.reload(true));
+  }).then(function (response) {
+    window.location.reload();
+  });
 }
 
 let btn = document.querySelectorAll("#delete");
 
 Array.from(btn).forEach((element) => {
   element.addEventListener("click", () => {
-    console.log(element.dataset.name);
-    console.log(element.dataset.img);
-
     fetch("deleteAnime", {
       method: "delete",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: element.dataset.name,
-        img: element.dataset.img,
+        id: element.dataset.id,
       }),
-    }).then(window.location.reload(true));
+    }).then(function (response) {
+      window.location.reload();
+    });
+  });
+});
+let update = document.querySelectorAll("#update");
+
+Array.from(update).forEach((element) => {
+  element.addEventListener("click", () => {
+    console.log(document.getElementById(`${element.dataset.id}`).value);
+    fetch("update", {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: element.dataset.id,
+        episode: document.getElementById(`${element.dataset.id}`).value,
+      }),
+    }).then(function (response) {
+      window.location.reload();
+    });
   });
 });

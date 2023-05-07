@@ -1,20 +1,38 @@
-body {
-  padding-top: 80px;
-  word-wrap: break-word;
-  background-color: aquamarine;
-  text-align: center;
-}
-img {
-  height: 200px;
-}
-
-.anime,
-.result {
-  text-align: center;
-}
-
-.result {
+.hero {
+  background-image: url("https://www.pixelstalk.net/wp-content/uploads/images6/Anime-Wallpaper-Aesthetic-Wallpaper-Shounen-Jump-1.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 80vh;
   display: flex;
-  gap: 50px;
-  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.hero .container {
+  background-color: rgba(201, 112, 112, 0.7);
+  padding: 10px;
+  border-radius: 10%;
+}
+
+footer {
+  background-color: #f8f9fa;
+  padding: 20px 0;
+  text-align: center;
+}
+
+footer a {
+  color: #6c757d;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: #343a40;
+}
+
+.navbar {
+  background-color: #f8f9fa;
+}
+
+.d-grid {
+  text-align: center;
 }

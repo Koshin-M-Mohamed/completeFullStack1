@@ -7,9 +7,24 @@ module.exports = function (app, passport, db) {
   });
 
   // PROFILE SECTION =========================
+  app.get("/bookmarks", isLoggedIn, function (req, res) {
+    db.collection("anime")
+      .find({ email: req.user.local.email })
+      .toArray((err, result) => {
+        if (err) return console.log(err);
+        res.render("bookmarks.ejs", {
+          user: req.user,
+          result: result,
+        });
+      });
+  });
+
+  const ObjectId = require("mongodb").ObjectID;
+
+  // PROFILE SECTION =========================
   app.get("/profile", isLoggedIn, function (req, res) {
     db.collection("anime")
-      .find({ email: req.user.local.email})
+      .find({ email: req.user.local.email })
       .toArray((err, result) => {
         if (err) return console.log(err);
         res.render("profile.ejs", {
@@ -17,6 +32,30 @@ module.exports = function (app, passport, db) {
           result: result,
         });
       });
+  });
+
+  app.put("/update", (req, res) => {
+    console.log("updating :", req.body.id);
+    console.log("new episode :", req.body.episode);
+
+    db.collection("anime").findOneAndUpdate(
+      {
+        id: ObjectId(req.body.id),
+      },
+      {
+        $set: {
+          episode: req.body.episode,
+        },
+      },
+      {
+        sort: { _id: -1 },
+        upsert: true,
+      },
+      (err, result) => {
+        if (err) return res.send(err);
+        res.send(result);
+      }
+    );
   });
 
   // LOGOUT ==============================
@@ -31,7 +70,13 @@ module.exports = function (app, passport, db) {
 
   app.post("/addAnime", (req, res) => {
     db.collection("anime").save(
-      { name: req.body.name, img: req.body.img, email: req.user.local.email },
+      {
+        name: req.body.name,
+        img: req.body.img,
+        email: req.user.local.email,
+        episode: 1,
+        id: new ObjectId(),
+      },
       (err, result) => {
         if (err) return console.log(err);
         console.log("saved to database");
@@ -40,24 +85,10 @@ module.exports = function (app, passport, db) {
     );
   });
 
-  // app.put('/messages', (req, res) => {
-  //   db.collection('messages')
-  //   .findOneAndUpdate({name: req.body.name, msg: req.body.msg}, {
-  //     $set: {
-  //       thumbUp:req.body.thumbUp + 1
-  //     }
-  //   }, {
-  //     sort: {_id: -1},
-  //     upsert: true
-  //   }, (err, result) => {
-  //     if (err) return res.send(err)
-  //     res.send(result)
-  //   })
-  // })
-
   app.delete("/deleteAnime", (req, res) => {
+    console.log("deleting :", req.body.id);
     db.collection("anime").findOneAndDelete(
-      { name: req.body.name, img: req.body.img },
+      { id: ObjectId(req.body.id) },
       (err, result) => {
         if (err) return res.send(500, err);
         res.send("Message deleted!");

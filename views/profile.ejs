@@ -1,50 +1,127 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>21 Savage Fan Site</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anime Bookmarker</title>
     <link
       rel="stylesheet"
-      href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.min.css"
       rel="stylesheet"
-      href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
     />
-    <link rel="stylesheet" href="style.css" />
+
+    <link rel="stylesheet" href="profile.css" />
   </head>
   <body>
-    <div class="container">
-      <div class="page-header text-center">
-        <h1>Profile Page</h1>
-        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
-      </div>
-    </div>
+    <header class="header">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Anime Bookmarker</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+      <div class="container">
+        <h1 class="display-6">Anime Bookmarker</h1>
+        <section class="container">
+          <div class="add-task">
 
-    <div class="anime">
-      <label for="search">Search for your favorite Anime</label>
-      <input type="text" name="search" id="animeName" />
-      <button id="btn">Search</button>
-    </div>
-
-    <div class="searchResult"></div>
-    <h1>Your Bookmarks</h1>
-
-    <div class="result">
-      <% for(var i=0; i<result.length; i++) {%>
-       
-          <div>
-            <h5 ><%= result[i].name %></h5>
-            <img 
-              src="<%= result[i].img %>"
-              alt=""
-            />
-            <br>
-            <button id="delete" data-name="<%= result[i].name %>" data-img="<%= result[i].img %>" >Delete</button>
+            <input type="text" name="search" id="animeName" placeholder="type name of anime to search" />
+            <button id="btn">Search anime</button>
+            
+            </form> 
           </div>
-         
-  
-         <% } %>
-    </div>
+          
+          
+            </section>
+
+            <div class="searchResult"></div>
+    <body>
+      <div class="container my-5">
+        <h2>Your bookmarks</h2>
+
+        <div class="row row-cols-2 row-cols-md-2 row-cols-lg-3 g-2">
+          <!-- Card 1 -->
+
+          <% for(var i=0; i<result.length; i++) {%>
+    
+            <div class="col">
+              <div class="card">
+                <img src="<%= result[i].img %>" class="img-fluid" alt="Image description">
+                <div class="card-body1">
+                  <h5 class="card-title"><%= result[i].name %></h5>
+                    <p>bookmarked episode:</p>
+                    <input type="text" placeholder="<%= result[i].episode %>" id="<%= result[i].id %>">
+                    <button class="btn btn-success " id="update" data-id="<%= result[i].id %>">update episode</button>
+                    <button id="delete" data-id="<%= result[i].id %>"  class="btn btn-primary">Delete</button>
+                  </div>
+                </div>
+              </div>
+       
+    
+           <% } %>
+            <!-- Additional cards can be added similarly -->
+            
+          </div>
+        </div>
+
+      
+
+    <footer>
+      <div class="container">
+        <div class="d-flex flex-column align-items-center">
+          <div class="mb-3">
+            <a
+              href="https://twitter.com/Koshinpro"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mx-2"
+              ><i class="bi bi-twitter"></i
+            ></a>
+            <a
+              href="https://www.linkedin.com/in/koshin-mohamed"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mx-2"
+              ><i class="bi bi-linkedin"></i
+            ></a>
+            <a
+              href="https://github.com/Koshin-M-Mohamed"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mx-2"
+              ><i class="bi bi-github"></i
+            ></a>
+          </div>
+          <p>&copy; 2023 Anime Bookmarker App! - All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
     <script src="main.js"></script>
   </body>
 </html>

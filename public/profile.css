@@ -1,0 +1,148 @@
+.anime,
+.result {
+  text-align: center;
+}
+
+.result {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  max-height: 60vh;
+}
+
+.todo {
+  border: 1px solid royalblue;
+}
+
+button {
+  margin: 10px;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.add-task {
+  display: flex;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.add-task input {
+  flex-grow: 1;
+  padding: 0.5rem;
+  border-radius: 4px 0 0 4px;
+  border: 1px solid #ced4da;
+  outline: none;
+}
+
+.add-task button {
+  padding: 0.5rem 1rem;
+  border-radius: 0 4px 4px 0;
+  border: 1px solid #ced4da;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.task-list {
+  width: 100%;
+  list-style-type: none;
+  padding: 0;
+  overflow-y: auto;
+  max-height: 60vh;
+}
+
+.task-list-item {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  padding: 0.75rem;
+  border-radius: 4px;
+  border: 1px solid #ced4da;
+  margin-bottom: 1rem;
+}
+
+.task-list-item span {
+  flex-grow: 1;
+}
+
+.hero {
+  background-size: cover;
+  background-position: center;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.hero .container {
+  background-color: rgba(243, 232, 232, 0.7);
+  padding: 10px;
+  border-radius: 10%;
+}
+
+footer {
+  background-color: #f8f9fa;
+  padding: 20px 0;
+  text-align: center;
+}
+
+footer a {
+  color: #6c757d;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: #343a40;
+}
+
+.navbar {
+  background-color: #f8f9fa;
+}
+
+.d-grid {
+  text-align: center;
+}
+
+.card-body img {
+  width: 300px;
+}
+
+.container img {
+  width: 300px;
+}
+
+.searchResult img {
+  width: 200px;
+}
+.container {
+  max-width: 1100px;
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+.card-img-top {
+  padding: 10px;
+}
+
+.card-body1 {
+  text-align: center;
+}
+.display-6 {
+  text-align: center;
+}
+.col {
+  min-width: 220px !important;
+}
